@@ -62,6 +62,12 @@
     div {
       text-align: left;
     }
+
+    .content {
+      height: 100px;
+      overflow: scroll;
+    }
+
 </style>
 
 <article>
