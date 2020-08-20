@@ -1,6 +1,6 @@
 <script>
     import Header from './UI/Header.svelte';
-    import MeetingItem from './UI/MeetingItem.svelte';
+    import MeetingCard from './UI/MeetingCard.svelte';
 
     const meetings = [
         {
@@ -34,7 +34,7 @@
 
 <section id="meetings">
     {#each meetings as meeting }
-        <MeetingItem />
+        <MeetingCard />
 
     {/each}
 </section>
