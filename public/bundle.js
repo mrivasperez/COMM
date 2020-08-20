@@ -136,6 +136,19 @@ var app = (function () {
     }
     const outroing = new Set();
     let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
     function transition_in(block, local) {
         if (block && block.i) {
             outroing.delete(block);
@@ -302,6 +315,13 @@ var app = (function () {
         else
             dispatch_dev("SvelteDOMSetAttribute", { node, attribute, value });
     }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.wholeText === data)
+            return;
+        dispatch_dev("SvelteDOMSetData", { node: text, data });
+        text.data = data;
+    }
     function validate_each_argument(arg) {
         if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
             let msg = '{#each} only iterates over array-like objects.';
@@ -413,8 +433,10 @@ var app = (function () {
     	let article;
     	let header;
     	let h1;
+    	let t0;
     	let t1;
     	let h2;
+    	let t2;
     	let t3;
     	let div0;
     	let img;
@@ -423,9 +445,10 @@ var app = (function () {
     	let div1;
     	let p;
     	let t5;
+    	let t6;
     	let footer;
     	let button0;
-    	let t7;
+    	let t8;
     	let button1;
 
     	const block = {
@@ -433,45 +456,46 @@ var app = (function () {
     			article = element("article");
     			header = element("header");
     			h1 = element("h1");
-    			h1.textContent = "TITLE";
+    			t0 = text(/*title*/ ctx[0]);
     			t1 = space();
     			h2 = element("h2");
-    			h2.textContent = "SUBTITLE";
+    			t2 = text(/*subtitle*/ ctx[1]);
     			t3 = space();
     			div0 = element("div");
     			img = element("img");
     			t4 = space();
     			div1 = element("div");
     			p = element("p");
-    			t5 = space();
+    			t5 = text(/*description*/ ctx[3]);
+    			t6 = space();
     			footer = element("footer");
     			button0 = element("button");
     			button0.textContent = "Show Details";
-    			t7 = space();
+    			t8 = space();
     			button1 = element("button");
     			button1.textContent = "Favorite";
-    			attr_dev(h1, "class", "svelte-1qv8nn2");
-    			add_location(h1, file$1, 56, 8, 843);
-    			attr_dev(h2, "class", "svelte-1qv8nn2");
-    			add_location(h2, file$1, 57, 8, 866);
-    			attr_dev(header, "class", "svelte-1qv8nn2");
-    			add_location(header, file$1, 55, 4, 826);
-    			if (img.src !== (img_src_value = "")) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "alt", "");
-    			attr_dev(img, "class", "svelte-1qv8nn2");
-    			add_location(img, file$1, 60, 8, 930);
-    			attr_dev(div0, "class", "image svelte-1qv8nn2");
-    			add_location(div0, file$1, 59, 4, 902);
-    			attr_dev(p, "class", "svelte-1qv8nn2");
-    			add_location(p, file$1, 63, 8, 997);
-    			attr_dev(div1, "class", "content svelte-1qv8nn2");
-    			add_location(div1, file$1, 62, 4, 967);
-    			add_location(button0, file$1, 66, 8, 1035);
-    			add_location(button1, file$1, 67, 8, 1073);
-    			attr_dev(footer, "class", "svelte-1qv8nn2");
-    			add_location(footer, file$1, 65, 4, 1018);
-    			attr_dev(article, "class", "svelte-1qv8nn2");
-    			add_location(article, file$1, 54, 0, 812);
+    			attr_dev(h1, "class", "svelte-1i6ahjr");
+    			add_location(h1, file$1, 66, 8, 1001);
+    			attr_dev(h2, "class", "svelte-1i6ahjr");
+    			add_location(h2, file$1, 67, 8, 1026);
+    			attr_dev(header, "class", "svelte-1i6ahjr");
+    			add_location(header, file$1, 65, 4, 984);
+    			if (img.src !== (img_src_value = /*imgUrl*/ ctx[2])) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", /*title*/ ctx[0]);
+    			attr_dev(img, "class", "svelte-1i6ahjr");
+    			add_location(img, file$1, 70, 8, 1092);
+    			attr_dev(div0, "class", "image svelte-1i6ahjr");
+    			add_location(div0, file$1, 69, 4, 1064);
+    			attr_dev(p, "class", "svelte-1i6ahjr");
+    			add_location(p, file$1, 73, 8, 1174);
+    			attr_dev(div1, "class", "content svelte-1i6ahjr");
+    			add_location(div1, file$1, 72, 4, 1144);
+    			add_location(button0, file$1, 76, 8, 1227);
+    			add_location(button1, file$1, 77, 8, 1265);
+    			attr_dev(footer, "class", "svelte-1i6ahjr");
+    			add_location(footer, file$1, 75, 4, 1210);
+    			attr_dev(article, "class", "svelte-1i6ahjr");
+    			add_location(article, file$1, 64, 0, 970);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -480,21 +504,37 @@ var app = (function () {
     			insert_dev(target, article, anchor);
     			append_dev(article, header);
     			append_dev(header, h1);
+    			append_dev(h1, t0);
     			append_dev(header, t1);
     			append_dev(header, h2);
+    			append_dev(h2, t2);
     			append_dev(article, t3);
     			append_dev(article, div0);
     			append_dev(div0, img);
     			append_dev(article, t4);
     			append_dev(article, div1);
     			append_dev(div1, p);
-    			append_dev(article, t5);
+    			append_dev(p, t5);
+    			append_dev(article, t6);
     			append_dev(article, footer);
     			append_dev(footer, button0);
-    			append_dev(footer, t7);
+    			append_dev(footer, t8);
     			append_dev(footer, button1);
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*title*/ 1) set_data_dev(t0, /*title*/ ctx[0]);
+    			if (dirty & /*subtitle*/ 2) set_data_dev(t2, /*subtitle*/ ctx[1]);
+
+    			if (dirty & /*imgUrl*/ 4 && img.src !== (img_src_value = /*imgUrl*/ ctx[2])) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*title*/ 1) {
+    				attr_dev(img, "alt", /*title*/ ctx[0]);
+    			}
+
+    			if (dirty & /*description*/ 8) set_data_dev(t5, /*description*/ ctx[3]);
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -513,8 +553,14 @@ var app = (function () {
     	return block;
     }
 
-    function instance$1($$self, $$props) {
-    	const writable_props = [];
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { title } = $$props;
+    	let { subtitle } = $$props;
+    	let { imgUrl } = $$props;
+    	let { description } = $$props;
+    	let { contactEmail } = $$props;
+    	let { comm } = $$props;
+    	const writable_props = ["title", "subtitle", "imgUrl", "description", "contactEmail", "comm"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<MeetingCard> was created with unknown prop '${key}'`);
@@ -522,13 +568,53 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("MeetingCard", $$slots, []);
-    	return [];
+
+    	$$self.$$set = $$props => {
+    		if ("title" in $$props) $$invalidate(0, title = $$props.title);
+    		if ("subtitle" in $$props) $$invalidate(1, subtitle = $$props.subtitle);
+    		if ("imgUrl" in $$props) $$invalidate(2, imgUrl = $$props.imgUrl);
+    		if ("description" in $$props) $$invalidate(3, description = $$props.description);
+    		if ("contactEmail" in $$props) $$invalidate(4, contactEmail = $$props.contactEmail);
+    		if ("comm" in $$props) $$invalidate(5, comm = $$props.comm);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		title,
+    		subtitle,
+    		imgUrl,
+    		description,
+    		contactEmail,
+    		comm
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("title" in $$props) $$invalidate(0, title = $$props.title);
+    		if ("subtitle" in $$props) $$invalidate(1, subtitle = $$props.subtitle);
+    		if ("imgUrl" in $$props) $$invalidate(2, imgUrl = $$props.imgUrl);
+    		if ("description" in $$props) $$invalidate(3, description = $$props.description);
+    		if ("contactEmail" in $$props) $$invalidate(4, contactEmail = $$props.contactEmail);
+    		if ("comm" in $$props) $$invalidate(5, comm = $$props.comm);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [title, subtitle, imgUrl, description, contactEmail, comm];
     }
 
     class MeetingCard extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
+
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+    			title: 0,
+    			subtitle: 1,
+    			imgUrl: 2,
+    			description: 3,
+    			contactEmail: 4,
+    			comm: 5
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -536,6 +622,81 @@ var app = (function () {
     			options,
     			id: create_fragment$1.name
     		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*title*/ ctx[0] === undefined && !("title" in props)) {
+    			console.warn("<MeetingCard> was created without expected prop 'title'");
+    		}
+
+    		if (/*subtitle*/ ctx[1] === undefined && !("subtitle" in props)) {
+    			console.warn("<MeetingCard> was created without expected prop 'subtitle'");
+    		}
+
+    		if (/*imgUrl*/ ctx[2] === undefined && !("imgUrl" in props)) {
+    			console.warn("<MeetingCard> was created without expected prop 'imgUrl'");
+    		}
+
+    		if (/*description*/ ctx[3] === undefined && !("description" in props)) {
+    			console.warn("<MeetingCard> was created without expected prop 'description'");
+    		}
+
+    		if (/*contactEmail*/ ctx[4] === undefined && !("contactEmail" in props)) {
+    			console.warn("<MeetingCard> was created without expected prop 'contactEmail'");
+    		}
+
+    		if (/*comm*/ ctx[5] === undefined && !("comm" in props)) {
+    			console.warn("<MeetingCard> was created without expected prop 'comm'");
+    		}
+    	}
+
+    	get title() {
+    		throw new Error("<MeetingCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set title(value) {
+    		throw new Error("<MeetingCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get subtitle() {
+    		throw new Error("<MeetingCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set subtitle(value) {
+    		throw new Error("<MeetingCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get imgUrl() {
+    		throw new Error("<MeetingCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set imgUrl(value) {
+    		throw new Error("<MeetingCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get description() {
+    		throw new Error("<MeetingCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set description(value) {
+    		throw new Error("<MeetingCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get contactEmail() {
+    		throw new Error("<MeetingCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set contactEmail(value) {
+    		throw new Error("<MeetingCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get comm() {
+    		throw new Error("<MeetingCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set comm(value) {
+    		throw new Error("<MeetingCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -552,7 +713,18 @@ var app = (function () {
     function create_each_block(ctx) {
     	let meetingcard;
     	let current;
-    	meetingcard = new MeetingCard({ $$inline: true });
+
+    	meetingcard = new MeetingCard({
+    			props: {
+    				title: /*meeting*/ ctx[1].title,
+    				subtitle: /*meeting*/ ctx[1].subtitle,
+    				imgUrl: /*meeting*/ ctx[1].imgUrl,
+    				description: /*meeting*/ ctx[1].description,
+    				contactEmail: /*meeting*/ ctx[1].contactEmail,
+    				comm: /*meeting*/ ctx[1].comm
+    			},
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {
@@ -562,6 +734,7 @@ var app = (function () {
     			mount_component(meetingcard, target, anchor);
     			current = true;
     		},
+    		p: noop,
     		i: function intro(local) {
     			if (current) return;
     			transition_in(meetingcard.$$.fragment, local);
@@ -601,6 +774,10 @@ var app = (function () {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
 
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
     	const block = {
     		c: function create() {
     			create_component(header.$$.fragment);
@@ -629,7 +806,35 @@ var app = (function () {
 
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*meetings*/ 1) {
+    				each_value = /*meetings*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(section, null);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(header.$$.fragment, local);
@@ -677,7 +882,7 @@ var app = (function () {
     			subtitle: "Fight racism together.",
     			description: "A movement building meeting for people of color, specfially youth, women, queer and trans folks to form community and protect each other.",
     			imgUrl: "https://images.unsplash.com/photo-1591826246299-9113fd782020?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
-    			COMM: "To be determined",
+    			comm: "To be determined",
     			contactEmail: "ar@test.com"
     		},
     		{
@@ -686,7 +891,7 @@ var app = (function () {
     			subtitle: "A place for humans with dogs.",
     			description: "Share tips and other great information about taking care of your dogs.",
     			imgUrl: "https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-    			COMM: "To be determined",
+    			comm: "To be determined",
     			contactEmail: "dog@test.com"
     		}
     	];
