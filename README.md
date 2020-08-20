@@ -1,5 +1,5 @@
 # COMM
 
-A social social networking application.
+An open source, truly social, social networking application.
 
 ## Under development.
