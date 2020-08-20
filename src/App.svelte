@@ -1,6 +1,7 @@
 <script>
     import Header from './UI/Header.svelte';
-    import MeetingCard from './UI/MeetingCard.svelte';
+    import MeetingCardGrid from './Meetings/MeetingCardGrid.svelte'
+
 
     const meetings = [
         {
@@ -25,24 +26,18 @@
 </script>
 
 <style>
-    #meetings {
+    main {
         margin-top: 5rem;
     }
 </style>
 
 <Header />
 
-<section id="meetings">
-    {#each meetings as meeting }
-        <MeetingCard 
-            title={meeting.title}
-            subtitle={meeting.subtitle}
-            imgUrl={meeting.imgUrl}
-            description={meeting.description}
-            contactEmail={meeting.contactEmail}
-            comm={meeting.comm}
-        />
+<main>
 
-    {/each}
-</section>
+    <MeetingCardGrid 
+    {meetings}/>
+
+</main>
+
 

@@ -66,14 +66,22 @@
     <header>
         <h1>{title}</h1>
         <h2>{subtitle}</h2>
+        <p>{comm}</p>
     </header>
+
     <div class="image">
         <img src="{imgUrl}" alt="{title}" />
     </div>
+
     <div class="content">
         <p>{description}</p>
     </div>
+    
     <footer>
+      <p>      
+        <a href="mailto:{contactEmail}">Contact Admin</a>
+      </p>
+
         <button>Show Details</button>
         <button>Favorite</button>
     </footer>

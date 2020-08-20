@@ -438,17 +438,25 @@ var app = (function () {
     	let h2;
     	let t2;
     	let t3;
+    	let p0;
+    	let t4;
+    	let t5;
     	let div0;
     	let img;
     	let img_src_value;
-    	let t4;
-    	let div1;
-    	let p;
-    	let t5;
     	let t6;
-    	let footer;
-    	let button0;
+    	let div1;
+    	let p1;
+    	let t7;
     	let t8;
+    	let footer;
+    	let p2;
+    	let a;
+    	let t9;
+    	let a_href_value;
+    	let t10;
+    	let button0;
+    	let t12;
     	let button1;
 
     	const block = {
@@ -461,39 +469,52 @@ var app = (function () {
     			h2 = element("h2");
     			t2 = text(/*subtitle*/ ctx[1]);
     			t3 = space();
+    			p0 = element("p");
+    			t4 = text(/*comm*/ ctx[5]);
+    			t5 = space();
     			div0 = element("div");
     			img = element("img");
-    			t4 = space();
-    			div1 = element("div");
-    			p = element("p");
-    			t5 = text(/*description*/ ctx[3]);
     			t6 = space();
+    			div1 = element("div");
+    			p1 = element("p");
+    			t7 = text(/*description*/ ctx[3]);
+    			t8 = space();
     			footer = element("footer");
+    			p2 = element("p");
+    			a = element("a");
+    			t9 = text("Contact Admin");
+    			t10 = space();
     			button0 = element("button");
     			button0.textContent = "Show Details";
-    			t8 = space();
+    			t12 = space();
     			button1 = element("button");
     			button1.textContent = "Favorite";
     			attr_dev(h1, "class", "svelte-1i6ahjr");
     			add_location(h1, file$1, 66, 8, 1001);
     			attr_dev(h2, "class", "svelte-1i6ahjr");
     			add_location(h2, file$1, 67, 8, 1026);
+    			attr_dev(p0, "class", "svelte-1i6ahjr");
+    			add_location(p0, file$1, 68, 8, 1054);
     			attr_dev(header, "class", "svelte-1i6ahjr");
     			add_location(header, file$1, 65, 4, 984);
     			if (img.src !== (img_src_value = /*imgUrl*/ ctx[2])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", /*title*/ ctx[0]);
     			attr_dev(img, "class", "svelte-1i6ahjr");
-    			add_location(img, file$1, 70, 8, 1092);
+    			add_location(img, file$1, 72, 8, 1115);
     			attr_dev(div0, "class", "image svelte-1i6ahjr");
-    			add_location(div0, file$1, 69, 4, 1064);
-    			attr_dev(p, "class", "svelte-1i6ahjr");
-    			add_location(p, file$1, 73, 8, 1174);
+    			add_location(div0, file$1, 71, 4, 1087);
+    			attr_dev(p1, "class", "svelte-1i6ahjr");
+    			add_location(p1, file$1, 76, 8, 1198);
     			attr_dev(div1, "class", "content svelte-1i6ahjr");
-    			add_location(div1, file$1, 72, 4, 1144);
-    			add_location(button0, file$1, 76, 8, 1227);
-    			add_location(button1, file$1, 77, 8, 1265);
+    			add_location(div1, file$1, 75, 4, 1168);
+    			attr_dev(a, "href", a_href_value = "mailto:" + /*contactEmail*/ ctx[4]);
+    			add_location(a, file$1, 81, 8, 1272);
+    			attr_dev(p2, "class", "svelte-1i6ahjr");
+    			add_location(p2, file$1, 80, 6, 1254);
+    			add_location(button0, file$1, 84, 8, 1342);
+    			add_location(button1, file$1, 85, 8, 1380);
     			attr_dev(footer, "class", "svelte-1i6ahjr");
-    			add_location(footer, file$1, 75, 4, 1210);
+    			add_location(footer, file$1, 79, 4, 1239);
     			attr_dev(article, "class", "svelte-1i6ahjr");
     			add_location(article, file$1, 64, 0, 970);
     		},
@@ -508,22 +529,30 @@ var app = (function () {
     			append_dev(header, t1);
     			append_dev(header, h2);
     			append_dev(h2, t2);
-    			append_dev(article, t3);
+    			append_dev(header, t3);
+    			append_dev(header, p0);
+    			append_dev(p0, t4);
+    			append_dev(article, t5);
     			append_dev(article, div0);
     			append_dev(div0, img);
-    			append_dev(article, t4);
-    			append_dev(article, div1);
-    			append_dev(div1, p);
-    			append_dev(p, t5);
     			append_dev(article, t6);
+    			append_dev(article, div1);
+    			append_dev(div1, p1);
+    			append_dev(p1, t7);
+    			append_dev(article, t8);
     			append_dev(article, footer);
+    			append_dev(footer, p2);
+    			append_dev(p2, a);
+    			append_dev(a, t9);
+    			append_dev(footer, t10);
     			append_dev(footer, button0);
-    			append_dev(footer, t8);
+    			append_dev(footer, t12);
     			append_dev(footer, button1);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*title*/ 1) set_data_dev(t0, /*title*/ ctx[0]);
     			if (dirty & /*subtitle*/ 2) set_data_dev(t2, /*subtitle*/ ctx[1]);
+    			if (dirty & /*comm*/ 32) set_data_dev(t4, /*comm*/ ctx[5]);
 
     			if (dirty & /*imgUrl*/ 4 && img.src !== (img_src_value = /*imgUrl*/ ctx[2])) {
     				attr_dev(img, "src", img_src_value);
@@ -533,7 +562,11 @@ var app = (function () {
     				attr_dev(img, "alt", /*title*/ ctx[0]);
     			}
 
-    			if (dirty & /*description*/ 8) set_data_dev(t5, /*description*/ ctx[3]);
+    			if (dirty & /*description*/ 8) set_data_dev(t7, /*description*/ ctx[3]);
+
+    			if (dirty & /*contactEmail*/ 16 && a_href_value !== (a_href_value = "mailto:" + /*contactEmail*/ ctx[4])) {
+    				attr_dev(a, "href", a_href_value);
+    			}
     		},
     		i: noop,
     		o: noop,
@@ -700,8 +733,8 @@ var app = (function () {
     	}
     }
 
-    /* src/App.svelte generated by Svelte v3.24.1 */
-    const file$2 = "src/App.svelte";
+    /* src/Meetings/MeetingCardGrid.svelte generated by Svelte v3.24.1 */
+    const file$2 = "src/Meetings/MeetingCardGrid.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -709,7 +742,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (36:4) {#each meetings as meeting }
+    // (23:4) {#each meetings as meeting }
     function create_each_block(ctx) {
     	let meetingcard;
     	let current;
@@ -734,7 +767,16 @@ var app = (function () {
     			mount_component(meetingcard, target, anchor);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			const meetingcard_changes = {};
+    			if (dirty & /*meetings*/ 1) meetingcard_changes.title = /*meeting*/ ctx[1].title;
+    			if (dirty & /*meetings*/ 1) meetingcard_changes.subtitle = /*meeting*/ ctx[1].subtitle;
+    			if (dirty & /*meetings*/ 1) meetingcard_changes.imgUrl = /*meeting*/ ctx[1].imgUrl;
+    			if (dirty & /*meetings*/ 1) meetingcard_changes.description = /*meeting*/ ctx[1].description;
+    			if (dirty & /*meetings*/ 1) meetingcard_changes.contactEmail = /*meeting*/ ctx[1].contactEmail;
+    			if (dirty & /*meetings*/ 1) meetingcard_changes.comm = /*meeting*/ ctx[1].comm;
+    			meetingcard.$set(meetingcard_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(meetingcard.$$.fragment, local);
@@ -753,7 +795,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(36:4) {#each meetings as meeting }",
+    		source: "(23:4) {#each meetings as meeting }",
     		ctx
     	});
 
@@ -761,11 +803,8 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
-    	let header;
-    	let t;
     	let section;
     	let current;
-    	header = new Header({ $$inline: true });
     	let each_value = /*meetings*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -780,8 +819,6 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(header.$$.fragment);
-    			t = space();
     			section = element("section");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -789,15 +826,13 @@ var app = (function () {
     			}
 
     			attr_dev(section, "id", "meetings");
-    			attr_dev(section, "class", "svelte-1fnq1hi");
-    			add_location(section, file$2, 34, 0, 1186);
+    			attr_dev(section, "class", "svelte-wbf085");
+    			add_location(section, file$2, 21, 0, 306);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			mount_component(header, target, anchor);
-    			insert_dev(target, t, anchor);
     			insert_dev(target, section, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -837,7 +872,6 @@ var app = (function () {
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(header.$$.fragment, local);
 
     			for (let i = 0; i < each_value.length; i += 1) {
     				transition_in(each_blocks[i]);
@@ -846,7 +880,6 @@ var app = (function () {
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(header.$$.fragment, local);
     			each_blocks = each_blocks.filter(Boolean);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -856,8 +889,6 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(header, detaching);
-    			if (detaching) detach_dev(t);
     			if (detaching) detach_dev(section);
     			destroy_each(each_blocks, detaching);
     		}
@@ -875,6 +906,129 @@ var app = (function () {
     }
 
     function instance$2($$self, $$props, $$invalidate) {
+    	let { meetings } = $$props;
+    	const writable_props = ["meetings"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<MeetingCardGrid> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("MeetingCardGrid", $$slots, []);
+
+    	$$self.$$set = $$props => {
+    		if ("meetings" in $$props) $$invalidate(0, meetings = $$props.meetings);
+    	};
+
+    	$$self.$capture_state = () => ({ MeetingCard, meetings });
+
+    	$$self.$inject_state = $$props => {
+    		if ("meetings" in $$props) $$invalidate(0, meetings = $$props.meetings);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [meetings];
+    }
+
+    class MeetingCardGrid extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { meetings: 0 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "MeetingCardGrid",
+    			options,
+    			id: create_fragment$2.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*meetings*/ ctx[0] === undefined && !("meetings" in props)) {
+    			console.warn("<MeetingCardGrid> was created without expected prop 'meetings'");
+    		}
+    	}
+
+    	get meetings() {
+    		throw new Error("<MeetingCardGrid>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set meetings(value) {
+    		throw new Error("<MeetingCardGrid>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/App.svelte generated by Svelte v3.24.1 */
+    const file$3 = "src/App.svelte";
+
+    function create_fragment$3(ctx) {
+    	let header;
+    	let t;
+    	let main;
+    	let meetingcardgrid;
+    	let current;
+    	header = new Header({ $$inline: true });
+
+    	meetingcardgrid = new MeetingCardGrid({
+    			props: { meetings: /*meetings*/ ctx[0] },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(header.$$.fragment);
+    			t = space();
+    			main = element("main");
+    			create_component(meetingcardgrid.$$.fragment);
+    			attr_dev(main, "class", "svelte-r5b0o4");
+    			add_location(main, file$3, 35, 0, 1195);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(header, target, anchor);
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, main, anchor);
+    			mount_component(meetingcardgrid, main, null);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(header.$$.fragment, local);
+    			transition_in(meetingcardgrid.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(header.$$.fragment, local);
+    			transition_out(meetingcardgrid.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(header, detaching);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(main);
+    			destroy_component(meetingcardgrid);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$3.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
     	const meetings = [
     		{
     			id: "m1",
@@ -904,20 +1058,20 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("App", $$slots, []);
-    	$$self.$capture_state = () => ({ Header, MeetingCard, meetings });
+    	$$self.$capture_state = () => ({ Header, MeetingCardGrid, meetings });
     	return [meetings];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {});
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "App",
     			options,
-    			id: create_fragment$2.name
+    			id: create_fragment$3.name
     		});
     	}
     }
