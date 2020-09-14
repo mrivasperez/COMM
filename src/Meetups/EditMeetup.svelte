@@ -3,7 +3,7 @@
   import TextInput from "../UI/TextInput.svelte";
   import Button from "../UI/Button.svelte";
   import Modal from "../UI/Modal.svelte";
-  import { isEmpty, isValidEmail } from "../utils/validation.js";
+  import { isEmpty, isValidEmail } from "../helpers/validation.js";
 
   let title = "";
   let subtitle = "";
@@ -20,12 +20,13 @@
   $: descriptionValid = !isEmpty(description);
   $: imageUrlValid = !isEmpty(imageUrl);
   $: emailValid = isValidEmail(email);
-  $: formIsValid = titleValid &&
+  $: formIsValid =
+    titleValid &&
     subtitleValid &&
     addressValid &&
-    emailValid &&
     descriptionValid &&
-    imageUrlValid;
+    imageUrlValid &&
+    emailValid;
 
   function submitForm() {
     dispatch("save", {
@@ -34,7 +35,7 @@
       address: address,
       email: email,
       description: description,
-      imageUrl: imageUrl,
+      imageUrl: imageUrl
     });
   }
 
@@ -93,8 +94,7 @@
       controlType="textarea"
       valid={descriptionValid}
       validityMessage="Please enter a valid description."
-      value={description}
-      on:input={event => (description = event.target.value)} />
+      bind:value={description} />
   </form>
   <div slot="footer">
     <Button type="button" mode="outline" on:click={cancel}>Cancel</Button>

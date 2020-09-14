@@ -1,17 +1,18 @@
 <script>
-    import {createEventDispatcher} from 'svelte';
-    import Button from './Button.svelte'
+  import { createEventDispatcher } from "svelte";
+  import Button from "./Button.svelte";
 
-    export let title;
-    const dispatch = createEventDispatcher();
+  export let title;
 
-    function closeModal(){
-        dispatch('cancel');
-    }
+  const dispatch = createEventDispatcher();
+
+  function closeModal() {
+    dispatch("cancel");
+  }
 </script>
 
 <style>
-    .modal-backdrop {
+  .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -19,9 +20,9 @@
     height: 100vh;
     background: rgba(0, 0, 0, 0.75);
     z-index: 10;
-    }
+  }
 
-    .modal {
+  .modal {
     position: fixed;
     top: 10vh;
     left: 10%;
@@ -32,43 +33,40 @@
     z-index: 100;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     overflow: scroll;
-    }
+  }
 
-    h1 {
+  h1 {
     padding: 1rem;
     margin: 0;
     border-bottom: 1px solid #ccc;
-    font-family: 'Roboto Slab', sans-serif;
-    }
+    font-family: "Roboto Slab", sans-serif;
+  }
 
-    .content {
+  .content {
     padding: 1rem;
-    }
+  }
 
-    footer {
+  footer {
     padding: 1rem;
-    }
+  }
 
-    @media (min-width: 768px) {
+  @media (min-width: 768px) {
     .modal {
-        width: 40rem;
-        left: calc(50% - 20rem);
+      width: 40rem;
+      left: calc(50% - 20rem);
     }
-    }
+  }
 </style>
 
-<div class="modal-backdrop" on:click="{closeModal}">
-
-</div>
-
+<div class="modal-backdrop" on:click={closeModal} />
 <div class="modal">
-    <h1>{title}</h1>
-    <div class="content">
-        <slot />
-    </div>
-    <footer>
-        <slot name="footer">
-            <Button on:click="{closeModal}">Close</Button>
-        </slot>
-    </footer>
+  <h1>{title}</h1>
+  <div class="content">
+    <slot />
+  </div>
+  <footer>
+    <slot name="footer">
+      <Button on:click={closeModal}>Close</Button>
+    </slot>
+  </footer>
 </div>
